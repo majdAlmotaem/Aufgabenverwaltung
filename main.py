@@ -25,13 +25,13 @@ def add_task():
 def show_tasks():
     sql_query = 'SELECT * FROM aufgaben'
     cursor.execute(sql_query)
-    tasks = cursor.fetchall()
+    tasks = cursor
     for task in tasks:
         print(task)
 
 #Aufgaben bearbeiten
 def edit_task():
-    title_auswahl = input('Welche ausgabe möchten Sie bearbeiten?(Geben Sie Title der Aufgabe ein)\t')
+    title_auswahl = input('Welche Aufgabe möchten Sie bearbeiten?(Geben Sie Title der Aufgabe ein)\t')
     check_query = 'SELECT * FROM aufgaben WHERE Title = %s'
     cursor.execute(check_query, (title_auswahl,))
     existing_task = cursor.fetchone()
@@ -66,7 +66,6 @@ option_auswahl = input()
 
 #Auswahl bestätigen
 if option_auswahl == '1': #add task
-    print('Geben Sie ein Task ein..')
     add_task()
 elif option_auswahl == '2': #Show Tasks
     show_tasks()
